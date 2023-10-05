@@ -33,8 +33,9 @@
 <meta property="og:image" content="http://example.com/2023/10/04/%E5%9C%A8%E4%BD%BF%E7%94%A8Hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E8%BF%87%E7%A8%8B%E4%B8%AD%E7%9A%84%E4%B8%80%E4%BA%9B%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/%E9%85%8D%E7%BD%AEleancloud%E7%9A%84appId%E5%92%8CappKey.png">
 <meta property="og:image" content="http://example.com/2023/10/04/%E5%9C%A8%E4%BD%BF%E7%94%A8Hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E8%BF%87%E7%A8%8B%E4%B8%AD%E7%9A%84%E4%B8%80%E4%BA%9B%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/image-20231004150215327.png">
 <meta property="og:image" content="http://example.com/2023/10/04/%E5%9C%A8%E4%BD%BF%E7%94%A8Hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E8%BF%87%E7%A8%8B%E4%B8%AD%E7%9A%84%E4%B8%80%E4%BA%9B%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/image-20231004150423051.png">
+<meta property="og:image" content="http://example.com/2023/10/04/%E5%9C%A8%E4%BD%BF%E7%94%A8Hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E8%BF%87%E7%A8%8B%E4%B8%AD%E7%9A%84%E4%B8%80%E4%BA%9B%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/image-20231005132601711.png">
 <meta property="article:published_time" content="2023-10-04T03:45:39.000Z">
-<meta property="article:modified_time" content="2023-10-05T05:15:56.380Z">
+<meta property="article:modified_time" content="2023-10-05T05:32:38.692Z">
 <meta property="article:author" content="xxxy-y">
 <meta property="article:tag" content="搭建个人博客">
 <meta property="article:tag" content="Hexo">
@@ -261,7 +262,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2.7k 字
+          3.1k 字
         
       </span>
     
@@ -272,7 +273,7 @@
         
         
         
-          23 分钟
+          26 分钟
         
       </span>
     
@@ -399,7 +400,12 @@
 </ul>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs shell">fatal: unable to access &#x27;https://github.com/user-name/user-name.github.io.git/&#x27;: Recv failure: Connection was aborted<br>FATAL Something&#x27;s wrong. Maybe you can find the solution here: https://hexo.io/docs/troubleshooting.html<br>Error: Spawn failed<br>    at ChildProcess.&lt;anonymous&gt; (C:\Users\wqt19\hexo-blog\node_modules\hexo-util\lib\spawn.js:51:21)<br>    at ChildProcess.emit (node:events:526:28)<br>    at ChildProcess.cp.emit (C:\Users\wqt19\hexo-blog\node_modules\cross-spawn\lib\enoent.js:34:29)<br>    at Process.ChildProcess._handle.onexit (node:internal/child_process:291:12)<br></code></pre></td></tr></table></figure>
 
-<p>2.上传的文章中无法显示图片，可以查阅<a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/asset-folders.html">上传图片</a>和<a target="_blank" rel="noopener" href="https://etrd.org/2017/01/23/hexo%E4%B8%AD%E5%AE%8C%E7%BE%8E%E6%8F%92%E5%85%A5%E6%9C%AC%E5%9C%B0%E5%9B%BE%E7%89%87/">文章</a>。</p>
+<p>2.上传的文章中无法显示图片，可以查阅<a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/asset-folders.html">上传图片</a>和<a target="_blank" rel="noopener" href="https://etrd.org/2017/01/23/hexo%E4%B8%AD%E5%AE%8C%E7%BE%8E%E6%8F%92%E5%85%A5%E6%9C%AC%E5%9C%B0%E5%9B%BE%E7%89%87/">文章</a>。因为我使用的是typora来写文章的，我用来上传图片的方法是安装了 hexo-asset-image 这个插件，这个插件可以自动转换图片路径，但是Hexo配置文件中 <code>post_asset_folder: true</code> 必须打开，打开这个配置的作用上面有提到，然后便可以使用<code>![logo](logo.jpg)</code> 去插入 <code>logo.jpg</code>.</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">npm install https://github.com/CodeFalling/hexo-asset-image --save<br></code></pre></td></tr></table></figure>
+
+<p>但是我还采取了以下措施，将typora中引用的图片路径换为<code>/文档同名文件夹/图片名</code>，还打开了typora的插入时自动转义图片URL。</p>
+<p><img src="/2023/10/04/%E5%9C%A8%E4%BD%BF%E7%94%A8Hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E8%BF%87%E7%A8%8B%E4%B8%AD%E7%9A%84%E4%B8%80%E4%BA%9B%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/image-20231005132601711.png" srcset="/img/loading.gif" lazyload alt="在typora和Hexo部署在GitHub的网站 上都可以看到"></p>
+<p>但是上述步骤不一定都是必须的，但是最后他可以实现在Typora和部署的网站上都能显示图片的目的。</p>
 <p>3.GitHub Pages自定义域名后每次hexo d都会失效解决，只要在source 目录添加一个新文件CNAME就好，CNAME    不带任何后缀，这就是全称，里面写的是你的域名。</p>
 
                 
