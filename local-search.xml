@@ -4,6 +4,27 @@
   
   
   <entry>
+    <title>maven中的依赖版本号</title>
+    <link href="/2023/10/09/maven%E4%B8%AD%E7%9A%84%E4%BE%9D%E8%B5%96%E7%89%88%E6%9C%AC%E5%8F%B7/"/>
+    <url>/2023/10/09/maven%E4%B8%AD%E7%9A%84%E4%BE%9D%E8%B5%96%E7%89%88%E6%9C%AC%E5%8F%B7/</url>
+    
+    <content type="html"><![CDATA[<h4 id="快照版本："><a href="#快照版本：" class="headerlink" title="快照版本："></a>快照版本：</h4><p>SNAPSHOT表示快照版，它不是个稳定版本，属于开发过程中使用的版本。当我们项目处于不停的迭代开发期，如果存在依赖关系，比如 A 项目组开发后发布的新包，被 B 项目组引用，这时候使用快照版本SNAPSHOT，能够在 A 项目组发布到仓库后，自动转为最新时间戳的后缀，供 B 项目组自动引用成功。</p><p>这样的好处是，当我们有依赖关系的两个项目组同时开发时，可以互不影响，每次 A 项目组发布后，B 项目组都会刷新、重新编译的方式，自动更新到最新的 A 项目开发的依赖包。只有当准备进入测试阶段，才会将里程碑版本号的SNAPSHOT替换成alpha或beta，即测试版本。</p><p>如果在项目配置文件中（无论是build.gradle还是pom.xml）指定的版本号带有<strong>’-SNAPSHOT’</strong>后缀，比如版本号为’abc-1.0-SNAPSHOT’，那么打出的包就是一个<strong>快照版本</strong>。</p><h4 id="正式版本："><a href="#正式版本：" class="headerlink" title="正式版本："></a>正式版本：</h4><h5 id="Alpha版"><a href="#Alpha版" class="headerlink" title="Alpha版"></a>Alpha版</h5><p>此版本他表示的是该软件在此阶段，标识内部测试版。α是<a href="https://so.csdn.net/so/search?q=%E5%B8%8C%E8%85%8A%E5%AD%97%E6%AF%8D&spm=1001.2101.3001.7020">希腊字母</a>的第一个，主要是以实现软件功能为主，一般只在软件开发者组内进行交流。也就是，该版本软件的Bug较多，需要继续跟进修复bug。</p><h5 id="Beta版"><a href="#Beta版" class="headerlink" title="Beta版"></a>Beta版</h5><p>β是希腊字母的第二个，标识公开测试版。该版本相对于α版已有了很大发展以及改进，消除了严重的异常，但还是存在着一些缺陷，需要经过很多次的测试来进一步消除问题。这个版本主要是对软件的UI进行修改调整。</p><h5 id="RC版（Release-Candidate）"><a href="#RC版（Release-Candidate）" class="headerlink" title="RC版（Release Candidate）"></a>RC版（Release Candidate）</h5><p>发行候选版本，基本上可以说，不存在导致错误的BUG，与即将发行的正式版相差无几，是最终发布成正式版的前一个版本，将bug修改完就可以发布成正式版了。</p><h5 id="Release版"><a href="#Release版" class="headerlink" title="Release版"></a>Release版</h5><p>该版本意味“最终版本”，也叫做正式发布版，在经过之前版本的一系列测试之后，来到了一个正式版本，是最终交付用户使用的一个版本。该版本也会被称为标准版。通常情况下，Release不会以单词形式出现在软件封面上，而是会有一个符号(Ｒ)。有的用GA来表示正式发布版，比如spring。</p><h5 id="Final版"><a href="#Final版" class="headerlink" title="Final版"></a>Final版</h5><p>最终版，也是正式发布版的一种表示方法，比如Hibernate。</p><h5 id="GA（General-Availability）"><a href="#GA（General-Availability）" class="headerlink" title="GA（General Availability）"></a>GA（General Availability）</h5><p>正式发布的版本，官方开始推荐广泛使用，国外有的用GA来表示release版本。</p><h5 id="Stable"><a href="#Stable" class="headerlink" title="Stable"></a>Stable</h5><p>稳定版，开源软件有的会用stable来表示正式发布的版本，比如Nginx。</p><p>授权和功能划分：</p><p>Trial：试用版，通常都有时间限制，有些试用版软件还在功能上做了一定的限制。可注册或购买成为正式版 </p><p>Unregistered：未注册版，通常没有时间限制，在功能上相对于正式版做了一定的限制。可注册或购买成为正式版。 </p><p>Demo：演示版，仅仅集成了正式版中的几个功能，不能升级成正式版。 </p><p>Lite：精简版。 </p><p>Full　version：完整版，属于正式版。</p><p>其他版本 </p><p>Enhance　：增强版或者加强版　属于正式版1 </p><p>Free　：自由版 </p><p>Release　：发行版　有时间限制 </p><p>Upgrade　：升级版 </p><p>Retail　　：零售版 </p><p>Cardware　：属共享软件的一种，只要给作者回复一封电邮或明信片即可。（有的作者并由此提供注册码等），目前这种形式已不多见。&#x2F;　S </p><p>Plus　：属增强版，不过这种大部分是在程序界面及多媒体功能上增强。 </p><p>Preview　：预览版 </p><p>Corporation　&amp;　Enterprise　：企业版 </p><p>Standard　：标准版 </p><p>Mini　：迷你版也叫精简版只有最基本的功能 </p><p>Premium　：　贵价版 </p><p>Professional(Pro)　：　专业版 </p><p>Express　：　特别版 </p><p>Deluxe　：　豪华版 </p><p>Regged　：　已注册版</p><p>Build:内部标号 </p><p>Delux:豪华版 (deluxe: 豪华的，华丽的) </p><p>DEMO演示版，一般会有功能限制 </p><p>Full:完全版 </p><p>Plus:加强版 </p><p>Trial:试用版（一般有时间或者功能限制）</p><h4 id="快照版本和正式版本的区别："><a href="#快照版本和正式版本的区别：" class="headerlink" title="快照版本和正式版本的区别："></a>快照版本和正式版本的区别：</h4><p>快照版本和正式版本的主要区别在于，本地获取这些依赖的机制有所不同。正式版本”abc-1.0”构建的时候会先在本次仓库中查找是否已经有了这个依赖库，若是没有的话才会去远程仓库中去拉取。假设项目中现在依赖”abc-1.0”，在第一次构建的时候会把该库从远程仓库中下载到本地仓库缓存，之后再次构建都不会去访问远程仓库了。如果远程仓库中代码进行了修改，但版本号依旧叫”abc-1.0”，那么此依赖没法获得最新更新。只有版本号更新后（如”abc-1.1”）才能拉取到最新代码。快照版本”abc-1.0-SNAPSHOT”<br>每次构建时，会优先去远程仓库中查看是否有最新的”abc-1.0-SNAPSHOT.jar”，若是有则下载下来使用。即便本地仓库中已经有了”abc-1.0-SNAPSHOT.jar”，它也会尝试去远程仓库中查看同名的jar是不是最新的。在配置Maven的Repository的时候中有个配置项，能够配置对于SNAPSHOT版本向远程仓库中查找的频率。频率共有四种，分别是always、daily、interval、never。</p><table><thead><tr><th>always</th><th>每次都去远程仓库查看是否有更新</th></tr></thead><tbody><tr><td>daily</td><td>每天只在第一次的时候查看是否有更新，当天的其它时候则不会查看</td></tr><tr><td>interval</td><td>容许设置一个分钟为单位的间隔时间，在这个间隔时间内只会去远程仓库中查找一次</td></tr><tr><td>never</td><td>不会去远程仓库中查找（和正式版本相同）</td></tr></tbody></table>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>maven</tag>
+      
+      <tag>版本号</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>在使用Hexo搭建个人博客过程中的一些注意事项</title>
     <link href="/2023/10/04/%E5%9C%A8%E4%BD%BF%E7%94%A8Hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E8%BF%87%E7%A8%8B%E4%B8%AD%E7%9A%84%E4%B8%80%E4%BA%9B%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/"/>
     <url>/2023/10/04/%E5%9C%A8%E4%BD%BF%E7%94%A8Hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E8%BF%87%E7%A8%8B%E4%B8%AD%E7%9A%84%E4%B8%80%E4%BA%9B%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/</url>
