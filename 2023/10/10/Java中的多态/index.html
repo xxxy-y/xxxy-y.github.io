@@ -16,23 +16,23 @@
   <meta name="author" content="xxxy-y">
   <meta name="keywords" content="">
   
-    <meta name="description" content="快照版本：SNAPSHOT表示快照版，它不是个稳定版本，属于开发过程中使用的版本。当我们项目处于不停的迭代开发期，如果存在依赖关系，比如 A 项目组开发后发布的新包，被 B 项目组引用，这时候使用快照版本SNAPSHOT，能够在 A 项目组发布到仓库后，自动转为最新时间戳的后缀，供 B 项目组自动引用成功。 这样的好处是，当我们有依赖关系的两个项目组同时开发时，可以互不影响，每次 A 项目组发布后">
+    <meta name="description" content="因为我一直使用Java语言，所以一直以为多态是Java中所特有的概念，但是其实在编程语言和类型论中都有多态的定义，所以之前对多态的理解感觉有些不到位，便做个总结来详细说明一下。 以下是维基百科的定义：多态（Polymorphism）,指为不同数据类型的实体提供统一的接口，或使用一个单一的符号来表示多个不同的类型。一般情况下，可以把多态分成以下几类：  特设多态：为个体的特定类型的任意集合定义一个共">
 <meta property="og:type" content="article">
-<meta property="og:title" content="maven中的依赖版本号">
-<meta property="og:url" content="http://example.com/2023/10/09/maven%E4%B8%AD%E7%9A%84%E4%BE%9D%E8%B5%96%E7%89%88%E6%9C%AC%E5%8F%B7/index.html">
+<meta property="og:title" content="Java中的多态">
+<meta property="og:url" content="http://example.com/2023/10/10/Java%E4%B8%AD%E7%9A%84%E5%A4%9A%E6%80%81/index.html">
 <meta property="og:site_name" content="xxxy-y的个人博客">
-<meta property="og:description" content="快照版本：SNAPSHOT表示快照版，它不是个稳定版本，属于开发过程中使用的版本。当我们项目处于不停的迭代开发期，如果存在依赖关系，比如 A 项目组开发后发布的新包，被 B 项目组引用，这时候使用快照版本SNAPSHOT，能够在 A 项目组发布到仓库后，自动转为最新时间戳的后缀，供 B 项目组自动引用成功。 这样的好处是，当我们有依赖关系的两个项目组同时开发时，可以互不影响，每次 A 项目组发布后">
+<meta property="og:description" content="因为我一直使用Java语言，所以一直以为多态是Java中所特有的概念，但是其实在编程语言和类型论中都有多态的定义，所以之前对多态的理解感觉有些不到位，便做个总结来详细说明一下。 以下是维基百科的定义：多态（Polymorphism）,指为不同数据类型的实体提供统一的接口，或使用一个单一的符号来表示多个不同的类型。一般情况下，可以把多态分成以下几类：  特设多态：为个体的特定类型的任意集合定义一个共">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2023-10-09T02:38:58.000Z">
-<meta property="article:modified_time" content="2023-10-09T03:38:55.722Z">
+<meta property="article:published_time" content="2023-10-10T10:18:30.000Z">
+<meta property="article:modified_time" content="2023-10-10T10:25:02.796Z">
 <meta property="article:author" content="xxxy-y">
-<meta property="article:tag" content="maven">
-<meta property="article:tag" content="版本号">
+<meta property="article:tag" content="多态">
+<meta property="article:tag" content="Java">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>maven中的依赖版本号 - xxxy-y的个人博客</title>
+  <title>Java中的多态 - xxxy-y的个人博客</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -227,7 +227,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="maven中的依赖版本号"></span>
+            <span id="subtitle" data-typed-text="Java中的多态"></span>
           
         </div>
 
@@ -238,8 +238,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-10-09 10:38" pubdate>
-          2023年10月9日 上午
+        <time datetime="2023-10-10 18:18" pubdate>
+          2023年10月10日 晚上
         </time>
       </span>
     
@@ -250,7 +250,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2.1k 字
+          2k 字
         
       </span>
     
@@ -261,7 +261,7 @@
         
         
         
-          18 分钟
+          17 分钟
         
       </span>
     
@@ -306,71 +306,50 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">maven中的依赖版本号</h1>
+            <h1 id="seo-header">Java中的多态</h1>
             
             
               <div class="markdown-body">
                 
-                <h4 id="快照版本："><a href="#快照版本：" class="headerlink" title="快照版本："></a>快照版本：</h4><p>SNAPSHOT表示快照版，它不是个稳定版本，属于开发过程中使用的版本。当我们项目处于不停的迭代开发期，如果存在依赖关系，比如 A 项目组开发后发布的新包，被 B 项目组引用，这时候使用快照版本SNAPSHOT，能够在 A 项目组发布到仓库后，自动转为最新时间戳的后缀，供 B 项目组自动引用成功。</p>
-<p>这样的好处是，当我们有依赖关系的两个项目组同时开发时，可以互不影响，每次 A 项目组发布后，B 项目组都会刷新、重新编译的方式，自动更新到最新的 A 项目开发的依赖包。只有当准备进入测试阶段，才会将里程碑版本号的SNAPSHOT替换成alpha或beta，即测试版本。</p>
-<p>如果在项目配置文件中（无论是build.gradle还是pom.xml）指定的版本号带有<strong>’-SNAPSHOT’</strong>后缀，比如版本号为’abc-1.0-SNAPSHOT’，那么打出的包就是一个<strong>快照版本</strong>。</p>
-<h4 id="正式版本："><a href="#正式版本：" class="headerlink" title="正式版本："></a>正式版本：</h4><h5 id="Alpha版"><a href="#Alpha版" class="headerlink" title="Alpha版"></a>Alpha版</h5><p>此版本他表示的是该软件在此阶段，标识内部测试版。α是<a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=%E5%B8%8C%E8%85%8A%E5%AD%97%E6%AF%8D&spm=1001.2101.3001.7020">希腊字母</a>的第一个，主要是以实现软件功能为主，一般只在软件开发者组内进行交流。也就是，该版本软件的Bug较多，需要继续跟进修复bug。</p>
-<h5 id="Beta版"><a href="#Beta版" class="headerlink" title="Beta版"></a>Beta版</h5><p>β是希腊字母的第二个，标识公开测试版。该版本相对于α版已有了很大发展以及改进，消除了严重的异常，但还是存在着一些缺陷，需要经过很多次的测试来进一步消除问题。这个版本主要是对软件的UI进行修改调整。</p>
-<h5 id="RC版（Release-Candidate）"><a href="#RC版（Release-Candidate）" class="headerlink" title="RC版（Release Candidate）"></a>RC版（Release Candidate）</h5><p>发行候选版本，基本上可以说，不存在导致错误的BUG，与即将发行的正式版相差无几，是最终发布成正式版的前一个版本，将bug修改完就可以发布成正式版了。</p>
-<h5 id="Release版"><a href="#Release版" class="headerlink" title="Release版"></a>Release版</h5><p>该版本意味“最终版本”，也叫做正式发布版，在经过之前版本的一系列测试之后，来到了一个正式版本，是最终交付用户使用的一个版本。该版本也会被称为标准版。通常情况下，Release不会以单词形式出现在软件封面上，而是会有一个符号(Ｒ)。有的用GA来表示正式发布版，比如spring。</p>
-<h5 id="Final版"><a href="#Final版" class="headerlink" title="Final版"></a>Final版</h5><p>最终版，也是正式发布版的一种表示方法，比如Hibernate。</p>
-<h5 id="GA（General-Availability）"><a href="#GA（General-Availability）" class="headerlink" title="GA（General Availability）"></a>GA（General Availability）</h5><p>正式发布的版本，官方开始推荐广泛使用，国外有的用GA来表示release版本。</p>
-<h5 id="Stable"><a href="#Stable" class="headerlink" title="Stable"></a>Stable</h5><p>稳定版，开源软件有的会用stable来表示正式发布的版本，比如Nginx。</p>
-<p>授权和功能划分：</p>
-<p>Trial：试用版，通常都有时间限制，有些试用版软件还在功能上做了一定的限制。可注册或购买成为正式版 </p>
-<p>Unregistered：未注册版，通常没有时间限制，在功能上相对于正式版做了一定的限制。可注册或购买成为正式版。 </p>
-<p>Demo：演示版，仅仅集成了正式版中的几个功能，不能升级成正式版。 </p>
-<p>Lite：精简版。 </p>
-<p>Full　version：完整版，属于正式版。</p>
-<p>其他版本 </p>
-<p>Enhance　：增强版或者加强版　属于正式版1 </p>
-<p>Free　：自由版 </p>
-<p>Release　：发行版　有时间限制 </p>
-<p>Upgrade　：升级版 </p>
-<p>Retail　　：零售版 </p>
-<p>Cardware　：属共享软件的一种，只要给作者回复一封电邮或明信片即可。（有的作者并由此提供注册码等），目前这种形式已不多见。&#x2F;　S </p>
-<p>Plus　：属增强版，不过这种大部分是在程序界面及多媒体功能上增强。 </p>
-<p>Preview　：预览版 </p>
-<p>Corporation　&amp;　Enterprise　：企业版 </p>
-<p>Standard　：标准版 </p>
-<p>Mini　：迷你版也叫精简版只有最基本的功能 </p>
-<p>Premium　：　贵价版 </p>
-<p>Professional(Pro)　：　专业版 </p>
-<p>Express　：　特别版 </p>
-<p>Deluxe　：　豪华版 </p>
-<p>Regged　：　已注册版</p>
-<p>Build:内部标号 </p>
-<p>Delux:豪华版 (deluxe: 豪华的，华丽的) </p>
-<p>DEMO演示版，一般会有功能限制 </p>
-<p>Full:完全版 </p>
-<p>Plus:加强版 </p>
-<p>Trial:试用版（一般有时间或者功能限制）</p>
-<h4 id="快照版本和正式版本的区别："><a href="#快照版本和正式版本的区别：" class="headerlink" title="快照版本和正式版本的区别："></a>快照版本和正式版本的区别：</h4><p>快照版本和正式版本的主要区别在于，本地获取这些依赖的机制有所不同。正式版本”abc-1.0”构建的时候会先在本次仓库中查找是否已经有了这个依赖库，若是没有的话才会去远程仓库中去拉取。假设项目中现在依赖”abc-1.0”，在第一次构建的时候会把该库从远程仓库中下载到本地仓库缓存，之后再次构建都不会去访问远程仓库了。如果远程仓库中代码进行了修改，但版本号依旧叫”abc-1.0”，那么此依赖没法获得最新更新。只有版本号更新后（如”abc-1.1”）才能拉取到最新代码。快照版本”abc-1.0-SNAPSHOT”<br>每次构建时，会优先去远程仓库中查看是否有最新的”abc-1.0-SNAPSHOT.jar”，若是有则下载下来使用。即便本地仓库中已经有了”abc-1.0-SNAPSHOT.jar”，它也会尝试去远程仓库中查看同名的jar是不是最新的。在配置Maven的Repository的时候中有个配置项，能够配置对于SNAPSHOT版本向远程仓库中查找的频率。频率共有四种，分别是always、daily、interval、never。</p>
-<table>
-<thead>
-<tr>
-<th>always</th>
-<th>每次都去远程仓库查看是否有更新</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>daily</td>
-<td>每天只在第一次的时候查看是否有更新，当天的其它时候则不会查看</td>
-</tr>
-<tr>
-<td>interval</td>
-<td>容许设置一个分钟为单位的间隔时间，在这个间隔时间内只会去远程仓库中查找一次</td>
-</tr>
-<tr>
-<td>never</td>
-<td>不会去远程仓库中查找（和正式版本相同）</td>
-</tr>
-</tbody></table>
+                <p>因为我一直使用Java语言，所以一直以为多态是Java中所特有的概念，但是其实在编程语言和类型论中都有多态的定义，所以之前对多态的理解感觉有些不到位，便做个总结来详细说明一下。</p>
+<p>以下是维基百科的定义：多态（Polymorphism）,指为不同数据类型的实体提供统一的接口，或使用一个单一的符号来表示多个不同的类型。一般情况下，可以把多态分成以下几类：</p>
+<ul>
+<li>特设多态：为个体的特定类型的任意集合定义一个共同接口。</li>
+<li>参数多态：指定一个或多个类型不靠名字而是靠可以标识任何类型的抽象符号。</li>
+<li>子类型：一个名字指称很多不同的类的实例，这些类有某个共同的超类。</li>
+</ul>
+<p>多态在编程语言中都有实现，我们可以使用Java来举例：</p>
+<h4 id="1-特设多态"><a href="#1-特设多态" class="headerlink" title="1.特设多态"></a>1.特设多态</h4><p>概念：多态函数有多个不同的实现，依赖于实参而调用相应版本的函数。</p>
+<p>在Java 中<code>函数重载</code>和<code>函数重写</code>都是特设多态中的实现方式。</p>
+<h5 id="函数重载"><a href="#函数重载" class="headerlink" title="函数重载"></a>函数重载</h5><p>函数重载也可以叫做方法重载，它指的是在同一个类中，多个函数或者方法有同样的名称，但是参数列表不相同的情形。</p>
+<p>函数重载是一个编译期概念，因为它是在编译阶段根据参数变量的类型和个数来判断最终要调用哪个方法，所以它也被叫做静态多态。</p>
+<p>为什么函数重载中返回值类型和访问修饰符类型不能作为是否函数重载的判断标准呢？</p>
+<p>因为Java识别一个方法是通过<code>JVM</code>来实现的，而<code>JVM</code>是通过方法签名来决定调用哪个方法，方法签名又是由<strong>方法名称 + 参数类型 + 参数个数</strong>组成的一个唯一值，如果方法的返回类型也作为方法签名的一部分，那么当程序员写了一个代码去调用“重载”的方法时，<code>JVM</code>就不能分辨要调用哪个方法了，所以函数返回值和函数的访问修饰符都不能作为是否函数重载的判断标准，而且被重载的方法也可以改变返回类型和访问修饰符。</p>
+<h5 id="函数重写"><a href="#函数重写" class="headerlink" title="函数重写"></a>函数重写</h5><p>函数重写也可以叫做函数覆盖，我个人感觉函数覆盖更好理解他是什么，它指的是返回类型、函数名和参数都一样，只是函数的实现体不一样，而且需要满足以下条件。</p>
+<ul>
+<li>访问级别的限制性一定不能比被重写方法的强</li>
+<li>写的方法能够抛出更少或更有限的异常（也就是说，被重写的方法声明了异常，但重写的方法可以什么也不声明）</li>
+<li>不能重写被标示为final的方法</li>
+<li>只能出现在子类和父类中</li>
+</ul>
+<p>函数重写也就是Java多态的实现方式。</p>
+<p>函数重写是一个运行时概念，因为它是在运行时，根据引用变量所指向的实际对象的类型来调用方法。</p>
+<h4 id="2-参数多态"><a href="#2-参数多态" class="headerlink" title="2.参数多态"></a>2.参数多态</h4><p>概念：声明或者定义函数（复合类型、变量）的时候不指定具体的类型，而把这些类型作为参数使用，让该定义对各种具体类型都适用。</p>
+<p>Java中的泛型就是参数多态的一种。</p>
+<h4 id="3-子类型"><a href="#3-子类型" class="headerlink" title="3.子类型"></a>3.子类型</h4><p>概念：在面向对象程序设计中，计算机程序运行时，相同的消息可能会送给多个不同的类别的对象，而系统可依据对象所属类别，引发对应类别的方法，而有不同的行为。</p>
+<p>这种子类型多态其实就是Java中常见的多态。</p>
+<p>在Java中多态的定义为同一操作作用于不同的对象，可以有不同的解释，产生不同的执行结果。</p>
+<p>Java中多态其实是一种运行期的状态。为了实现运行期的多态，或者说是动态绑定，需要满足三个条件：</p>
+<ul>
+<li>有类继承或者接口实现</li>
+<li>子类要重写父类的方法</li>
+<li>父类的引用指向子类的对象</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Parent</span>&#123;<br>    <br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">call</span><span class="hljs-params">()</span>&#123;<br>        sout(<span class="hljs-string">&quot;im Parent&quot;</span>);<br>    &#125;<br>&#125;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Son</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">Parent</span>&#123;<span class="hljs-comment">// 1.有类继承或者接口实现</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">call</span><span class="hljs-params">()</span>&#123;<span class="hljs-comment">// 2.子类要重写父类的方法</span><br>        sout(<span class="hljs-string">&quot;im Son&quot;</span>);<br>    &#125;<br>&#125;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Daughter</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">Parent</span>&#123;<span class="hljs-comment">// 1.有类继承或者接口实现</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">call</span><span class="hljs-params">()</span>&#123;<span class="hljs-comment">// 2.子类要重写父类的方法</span><br>        sout(<span class="hljs-string">&quot;im Daughter&quot;</span>);<br>    &#125;<br>&#125;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Test</span>&#123;<br>    <br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span>&#123;<br>        <span class="hljs-type">Parent</span> <span class="hljs-variable">p</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Son</span>(); <span class="hljs-comment">//3.父类的引用指向子类的对象</span><br>        <span class="hljs-type">Parent</span> <span class="hljs-variable">p1</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Daughter</span>(); <span class="hljs-comment">//3.父类的引用指向子类的对象</span><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>这样，就实现了多态，同样是Parent类的实例，p.call 调用的是Son类的实现、p1.call调用的是Daughter的实现。这也被叫做动态多态。</p>
+<p>有人说，你自己定义的时候不就已经知道p是son，p1是Daughter了么。但是，有些时候你用到的对象并不都是自己声明的。</p>
+<p>比如Spring 中的IOC出来的对象，你在使用的时候就不知道他是谁，或者说你可以不用关心他是谁。根据具体情况而定。</p>
 
                 
               </div>
@@ -383,9 +362,9 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/maven/" class="print-no-link">#maven</a>
+        <a href="/tags/%E5%A4%9A%E6%80%81/" class="print-no-link">#多态</a>
       
-        <a href="/tags/%E7%89%88%E6%9C%AC%E5%8F%B7/" class="print-no-link">#版本号</a>
+        <a href="/tags/Java/" class="print-no-link">#Java</a>
       
     </div>
   
@@ -397,8 +376,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>maven中的依赖版本号</div>
-      <div>http://example.com/2023/10/09/maven中的依赖版本号/</div>
+      <div>Java中的多态</div>
+      <div>http://example.com/2023/10/10/Java中的多态/</div>
     </div>
     <div class="license-meta">
       
@@ -410,7 +389,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2023年10月9日</div>
+          <div>2023年10月10日</div>
         </div>
       
       
@@ -442,18 +421,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/10/10/Java%E4%B8%AD%E7%9A%84%E5%A4%9A%E6%80%81/" title="Java中的多态">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Java中的多态</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/10/04/%E5%9C%A8%E4%BD%BF%E7%94%A8Hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E8%BF%87%E7%A8%8B%E4%B8%AD%E7%9A%84%E4%B8%80%E4%BA%9B%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/" title="在使用Hexo搭建个人博客过程中的一些注意事项">
-                        <span class="hidden-mobile">在使用Hexo搭建个人博客过程中的一些注意事项</span>
+                      <a href="/2023/10/09/maven%E4%B8%AD%E7%9A%84%E4%BE%9D%E8%B5%96%E7%89%88%E6%9C%AC%E5%8F%B7/" title="maven中的依赖版本号">
+                        <span class="hidden-mobile">maven中的依赖版本号</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
