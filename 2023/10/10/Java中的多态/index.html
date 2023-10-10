@@ -24,7 +24,7 @@
 <meta property="og:description" content="因为我一直使用Java语言，所以一直以为多态是Java中所特有的概念，但是其实在编程语言和类型论中都有多态的定义，所以之前对多态的理解感觉有些不到位，便做个总结来详细说明一下。 以下是维基百科的定义：多态（Polymorphism）,指为不同数据类型的实体提供统一的接口，或使用一个单一的符号来表示多个不同的类型。一般情况下，可以把多态分成以下几类：  特设多态：为个体的特定类型的任意集合定义一个共">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-10-10T10:18:30.000Z">
-<meta property="article:modified_time" content="2023-10-10T10:47:39.157Z">
+<meta property="article:modified_time" content="2023-10-10T10:48:49.130Z">
 <meta property="article:author" content="xxxy-y">
 <meta property="article:tag" content="多态">
 <meta property="article:tag" content="Java">
@@ -320,7 +320,7 @@
 </ul>
 <p>多态在编程语言中都有实现，我们可以使用Java来举例：</p>
 <h4 id="1-特设多态"><a href="#1-特设多态" class="headerlink" title="1.特设多态"></a>1.特设多态</h4><p>概念：多态函数有多个不同的实现，依赖于实参而调用相应版本的函数。</p>
-<p>在Java 中<code>方法重载</code>和<code>方法重写</code>都是特设多态中的实现方式。<code>在C语言中叫做函数，在Java中叫做方法。</code>在C语言中也可以实现函数重载和函数重写。</p>
+<p>在Java 中<code>方法重载</code>和<code>方法重写</code>都是特设多态中的实现方式。<code>在C语言中叫做函数，在Java中叫做方法</code>。在C语言中也可以实现函数重载和函数重写。</p>
 <h5 id="方法重载"><a href="#方法重载" class="headerlink" title="方法重载"></a>方法重载</h5><p>方法重载指的是在同一个类中，多个方法有同样的名称，但是参数列表不相同的情形。</p>
 <p>方法重载是一个编译期概念，因为它是在编译阶段根据参数变量的类型和个数来判断最终要调用哪个方法，所以它也被叫做静态多态。</p>
 <p>为什么方法重载中返回值类型和访问修饰符类型不能作为是否方法重载的判断标准呢？</p>
