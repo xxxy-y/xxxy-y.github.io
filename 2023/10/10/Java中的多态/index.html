@@ -24,7 +24,7 @@
 <meta property="og:description" content="因为我一直使用Java语言，所以一直以为多态是Java中所特有的概念，但是其实在编程语言和类型论中都有多态的定义，所以之前对多态的理解感觉有些不到位，便做个总结来详细说明一下。 以下是维基百科的定义：多态（Polymorphism）,指为不同数据类型的实体提供统一的接口，或使用一个单一的符号来表示多个不同的类型。一般情况下，可以把多态分成以下几类：  特设多态：为个体的特定类型的任意集合定义一个共">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-10-10T10:18:30.000Z">
-<meta property="article:modified_time" content="2023-10-12T10:59:54.445Z">
+<meta property="article:modified_time" content="2023-10-12T11:28:22.911Z">
 <meta property="article:author" content="xxxy-y">
 <meta property="article:tag" content="多态">
 <meta property="article:tag" content="Java">
@@ -250,7 +250,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2.1k 字
+          2k 字
         
       </span>
     
@@ -261,7 +261,7 @@
         
         
         
-          18 分钟
+          17 分钟
         
       </span>
     
@@ -348,10 +348,8 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Parent</span>&#123;<br>    <br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">call</span><span class="hljs-params">()</span>&#123;<br>        sout(<span class="hljs-string">&quot;im Parent&quot;</span>);<br>    &#125;<br>&#125;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Son</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">Parent</span>&#123;<span class="hljs-comment">// 1.有类继承或者接口实现</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">call</span><span class="hljs-params">()</span>&#123;<span class="hljs-comment">// 2.子类要重写父类的方法</span><br>        sout(<span class="hljs-string">&quot;im Son&quot;</span>);<br>    &#125;<br>&#125;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Daughter</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">Parent</span>&#123;<span class="hljs-comment">// 1.有类继承或者接口实现</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">call</span><span class="hljs-params">()</span>&#123;<span class="hljs-comment">// 2.子类要重写父类的方法</span><br>        sout(<span class="hljs-string">&quot;im Daughter&quot;</span>);<br>    &#125;<br>&#125;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Test</span>&#123;<br>    <br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span>&#123;<br>        <span class="hljs-type">Parent</span> <span class="hljs-variable">p</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Son</span>(); <span class="hljs-comment">//3.父类的引用指向子类的对象</span><br>        <span class="hljs-type">Parent</span> <span class="hljs-variable">p1</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Daughter</span>(); <span class="hljs-comment">//3.父类的引用指向子类的对象</span><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <p>这样，就实现了多态，同样是Parent类的实例，p.call 调用的是Son类的实现、p1.call 调用的是Daughter的实现。这也被叫做动态多态。</p>
-<p>有人说，你自己定义的时候不就已经知道 p 是 son，p1 是Daughter了么。但是，有些时候你用到的对象并不都是自己声明的。</p>
+<p>有人说，你自己定义的时候不就已经知道 p 是 son，p1 是 Daughter 了么。但是，有些时候你用到的对象并不都是自己声明的。</p>
 <p>比如 Spring 中的 IOC 出来的对象，你在使用的时候就不知道他是谁，或者说你可以不用关心他是谁。根据具体情况而定。</p>
-<p>为什么父类的引用指向子类的对象不会报错，不会发生编译期报错？</p>
-<p>在子类的引用指向父类的对象的情况下，程序未运行编译器就会报错，这是编译期报错，在程序运行时报错是运行时报错，它会发生编译期报错是因为</p>
 
                 
               </div>
