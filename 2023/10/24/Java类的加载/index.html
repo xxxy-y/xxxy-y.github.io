@@ -16,26 +16,26 @@
   <meta name="author" content="xxxy-y">
   <meta name="keywords" content="">
   
-    <meta name="description" content="Java编译原理一个Java虚拟机（JVM）是从未被物理建成硬件假想计算机。而HotSpot虚拟机则是JVM的一种实现。 编程语言的编译过程一般分为前端编译和后端编译。 根据完成任务不同，可以将编译器的组成部分划分为前端（Front End）与后端（Back End）。 前端编译主要指与源语言有关但与目标机无关的部分，包括词法分析、语法分析、语义分析与中间代码生成。 后端编译主要指与目标机有关的部">
+    <meta name="description" content="源码解析 Java类的链接和初始化 java中的类大致分为三种： 1.系统类 。 2.扩展类 。 3.由程序员自定义的类。  类装载方式，有两种: 1.隐式装载， 程序在运行过程中当碰到通过new 等方式生成对象时，隐式调用类装载器加载对应的类到JVM中。  2.显式装载， 通过class.forname()等方法，显式加载需要的类。  类加载的动态性体现: 一个应用程序总是由n多个类组成，Jav">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Java的编译原理">
-<meta property="og:url" content="http://example.com/2023/10/13/Java%E7%9A%84%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/index.html">
+<meta property="og:title" content="Java类的加载">
+<meta property="og:url" content="http://example.com/2023/10/24/Java%E7%B1%BB%E7%9A%84%E5%8A%A0%E8%BD%BD/index.html">
 <meta property="og:site_name" content="xxxy-y的个人博客">
-<meta property="og:description" content="Java编译原理一个Java虚拟机（JVM）是从未被物理建成硬件假想计算机。而HotSpot虚拟机则是JVM的一种实现。 编程语言的编译过程一般分为前端编译和后端编译。 根据完成任务不同，可以将编译器的组成部分划分为前端（Front End）与后端（Back End）。 前端编译主要指与源语言有关但与目标机无关的部分，包括词法分析、语法分析、语义分析与中间代码生成。 后端编译主要指与目标机有关的部">
+<meta property="og:description" content="源码解析 Java类的链接和初始化 java中的类大致分为三种： 1.系统类 。 2.扩展类 。 3.由程序员自定义的类。  类装载方式，有两种: 1.隐式装载， 程序在运行过程中当碰到通过new 等方式生成对象时，隐式调用类装载器加载对应的类到JVM中。  2.显式装载， 通过class.forname()等方法，显式加载需要的类。  类加载的动态性体现: 一个应用程序总是由n多个类组成，Jav">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://example.com/2023/10/13/Java%E7%9A%84%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/QQ20180414-203816.png">
-<meta property="og:image" content="http://example.com/2023/10/13/Java%E7%9A%84%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/15539289530245.jpg">
-<meta property="article:published_time" content="2023-10-13T11:09:05.000Z">
-<meta property="article:modified_time" content="2023-10-13T11:09:05.850Z">
+<meta property="og:image" content="http://www.hollischuang.com/wp-content/uploads/2015/04/image03.png">
+<meta property="og:image" content="http://www.hollischuang.com/wp-content/uploads/2015/04/image02.png">
+<meta property="article:published_time" content="2023-10-24T04:20:53.000Z">
+<meta property="article:modified_time" content="2023-10-24T04:24:22.553Z">
 <meta property="article:author" content="xxxy-y">
 <meta property="article:tag" content="Java">
 <meta property="article:tag" content="JVM">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://example.com/2023/10/13/Java%E7%9A%84%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/QQ20180414-203816.png">
+<meta name="twitter:image" content="http://www.hollischuang.com/wp-content/uploads/2015/04/image03.png">
   
   
   
-  <title>Java的编译原理 - xxxy-y的个人博客</title>
+  <title>Java类的加载 - xxxy-y的个人博客</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -230,7 +230,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="Java的编译原理"></span>
+            <span id="subtitle" data-typed-text="Java类的加载"></span>
           
         </div>
 
@@ -241,8 +241,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-10-13 19:09" pubdate>
-          2023年10月13日 晚上
+        <time datetime="2023-10-24 12:20" pubdate>
+          2023年10月24日 中午
         </time>
       </span>
     
@@ -253,7 +253,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2.2k 字
+          2.3k 字
         
       </span>
     
@@ -264,7 +264,7 @@
         
         
         
-          19 分钟
+          20 分钟
         
       </span>
     
@@ -309,41 +309,48 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">Java的编译原理</h1>
+            <h1 id="seo-header">Java类的加载</h1>
             
             
               <div class="markdown-body">
                 
-                <h4 id="Java编译原理"><a href="#Java编译原理" class="headerlink" title="Java编译原理"></a>Java编译原理</h4><p><strong>一个Java虚拟机（JVM）是从未被物理建成硬件假想计算机</strong>。而HotSpot虚拟机则是JVM的一种实现。</p>
-<p>编程语言的编译过程一般分为前端编译和后端编译。</p>
-<p>根据完成任务不同，可以将编译器的组成部分划分为前端（Front End）与后端（Back End）。</p>
-<p>前端编译主要指与源语言有关但与目标机无关的部分，包括词法分析、语法分析、语义分析与中间代码生成。</p>
-<p>后端编译主要指与目标机有关的部分，包括代码优化和目标代码生成等。</p>
-<p><img src="/2023/10/13/Java%E7%9A%84%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/QQ20180414-203816.png" srcset="/img/loading.gif" lazyload></p>
-<h5 id="前端（Front-End）编译"><a href="#前端（Front-End）编译" class="headerlink" title="前端（Front End）编译"></a>前端（Front End）编译</h5><h6 id="词法分析"><a href="#词法分析" class="headerlink" title="词法分析"></a>词法分析</h6><p>词法分析阶段是编译过程的第一个阶段。这个阶段的任务是从左到右一个字符一个字符地读入源程序，将字符序列转换为标记（token）序列的过程。这里的标记是一个字符串，是构成源代码的最小单位。在这个过程中，词法分析器还会对标记进行分类。</p>
-<p>词法分析器通常不会关心标记之间的关系（属于语法分析的范畴），举例来说：词法分析器能够将括号识别为标记，但并不保证括号是否匹配。</p>
-<h6 id="语法分析"><a href="#语法分析" class="headerlink" title="语法分析"></a>语法分析</h6><p>语法分析的任务是在词法分析的基础上将单词序列组合成各类语法短语，如“程序”，“语句”，“表达式”等等.语法分析程序判断源程序在结构上是否正确.源程序的结构由上下文无关文法描述。</p>
-<h6 id="语义分析"><a href="#语义分析" class="headerlink" title="语义分析"></a>语义分析</h6><p>语义分析是编译过程的一个逻辑阶段， 语义分析的任务是对结构上正确的源程序进行上下文有关性质的审查，进行类型审查。语义分析是审查源程序有无语义错误，为代码生成阶段收集类型信息。</p>
-<p>语义分析的一个重要部分就是类型检查。比如很多语言要求数组下标必须为整数，如果使用浮点数作为下标，编译器就必须报错。再比如，很多语言允许某些类型转换，称为自动类型转换。</p>
-<h6 id="中间代码生成"><a href="#中间代码生成" class="headerlink" title="中间代码生成"></a>中间代码生成</h6><p>在源程序的语法分析和语义分析完成之后，很多编译器生成一个明确的低级的或类机器语言的中间表示。该中间表示有两个重要的性质： 1.易于生成； 2.能够轻松地翻译为目标机器上的语言。</p>
-<p>在Java中，<code>javac</code>执行的结果就是得到一个字节码，而这个字节码其实就是一种中间代码。</p>
-<h5 id="后端（Back-End）编译"><a href="#后端（Back-End）编译" class="headerlink" title="后端（Back End）编译"></a>后端（Back End）编译</h5><p>JVM 通过解释字节码将其翻译成对应的机器指令，逐条读入，逐条解释翻译。</p>
-<h6 id="JIT技术"><a href="#JIT技术" class="headerlink" title="JIT技术"></a>JIT技术</h6><p>但是在经过解释执行后，其执行速度必然会比可执行的二进制字节码程序慢很多。这就是传统的JVM的<strong>解释器（Interpreter，它是JVM中的一部分）</strong>的功能。为了解决这种效率问题，引入了 <strong>JIT</strong> 技术。</p>
-<p>JAVA程序还是通过解释器进行解释执行，当JVM发现某个方法或代码块运行特别频繁的时候，就会认为这是“热点代码”（Hot Spot Code)。然后JIT会把部分“热点代码”<strong>翻译</strong>成本地机器相关的机器码，并进行<strong>优化</strong>，然后再把翻译后的机器码<strong>缓存</strong>起来，以备下次使用。</p>
-<p>HotSpot虚拟机中内置了两个JIT编译器：Client Complier和Server Complier，分别用在客户端和服务端，目前主流的HotSpot虚拟机中默认是采用解释器与其中一个编译器直接配合的方式工作。</p>
-<p>当 JVM 执行代码时，它并不立即开始编译代码。首先，如果这段代码本身在将来只会被执行一次，那么从本质上看，编译就是在浪费精力。因为将代码翻译成 java 字节码相对于编译这段代码并执行代码来说，要快很多。第二个原因是最优化，当 JVM 执行某一方法或遍历循环的次数越多，就会更加了解代码结构，那么 JVM 在编译代码的时候就做出相应的优化。</p>
-<p>要想触发JIT，首先需要识别出热点代码。目前主要的热点代码识别方式是热点探测（Hot Spot Detection），有以下两种：</p>
-<p>1、基于采样的方式探测（Sample Based Hot Spot Detection) ：周期性检测各个线程的栈顶，发现某个方法经常出险在栈顶，就认为是热点方法。好处就是简单，缺点就是无法精确确认一个方法的热度。容易受线程阻塞或别的原因干扰热点探测。</p>
-<p>2、基于计数器的热点探测（Counter Based Hot Spot Detection)。采用这种方法的虚拟机会为每个方法，甚至是代码块建立计数器，统计方法的执行次数，某个方法超过阀值就认为是热点方法，触发JIT编译。</p>
-<p>在HotSpot虚拟机中使用的是第二种——基于计数器的热点探测方法，因此它为每个方法准备了两个计数器：方法调用计数器和回边计数器。</p>
-<p>方法计数器。记录一个方法被调用次数的计数器。</p>
-<p>回边计数器。记录方法中的for或者while的运行次数的计数器。</p>
-<h6 id="编译优化"><a href="#编译优化" class="headerlink" title="编译优化"></a>编译优化</h6><p>前面提到过，JIT除了具有缓存的功能外，还会对代码做各种优化。说到这里，不得不佩服HotSpot的开发者，他们在JIT中对于代码优化真的算是面面俱到了。</p>
-<h5 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h5><p>在Java语言中，我们可以把将<code>.java</code>文件通过 <code>jdk中的bin文件夹下的javac.exe</code> 编译成<code>.class</code>的编译过程称之为前端编译。把将<code>.class</code>文件通过 <code>JVM(jre中的bin文件夹可以看作为JVM)</code> 翻译成机器指令的编译过程称之为后端编译。</p>
-<p><code>javac</code>的编译就是前端编译。除了这种以外，我们使用的很多IDE，如eclipse，idea等，都内置了前端编译器。主要功能就是把<code>.java</code>代码转换成<code>.class</code>代码（中间代码）。</p>
-<p>JVM 通过解释字节码将其翻译成对应的机器指令，逐条读入，逐条解释翻译。</p>
-<p><img src="/2023/10/13/Java%E7%9A%84%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/15539289530245.jpg" srcset="/img/loading.gif" lazyload></p>
-<p>因为JVM只要接收到.class文件便可以执行，它不管这个.class文件是怎么生成的，所以衍生出了很多新的编程语言，像Groovy、Scala、Kotlin等等，他们生成.class文件然后交给JVM来使用。</p>
+                <p><a target="_blank" rel="noopener" href="https://www.hollischuang.com/archives/199">源码解析</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.hollischuang.com/archives/201">Java类的链接和初始化</a></p>
+<h5 id="java中的类大致分为三种："><a href="#java中的类大致分为三种：" class="headerlink" title="java中的类大致分为三种："></a><strong>java中的类大致分为三种：</strong></h5><blockquote>
+<p>1.系统类 。</p>
+<p>2.扩展类 。</p>
+<p>3.由程序员自定义的类。</p>
+</blockquote>
+<h5 id="类装载方式，有两种"><a href="#类装载方式，有两种" class="headerlink" title="类装载方式，有两种:"></a><strong>类装载方式，有两种:</strong></h5><blockquote>
+<p>1.隐式装载， 程序在运行过程中当碰到通过new 等方式生成对象时，隐式调用类装载器加载对应的类到JVM中。 </p>
+<p>2.显式装载， 通过class.forname()等方法，显式加载需要的类。</p>
+</blockquote>
+<h5 id="类加载的动态性体现"><a href="#类加载的动态性体现" class="headerlink" title="类加载的动态性体现:"></a><strong>类加载的动态性体现:</strong></h5><blockquote>
+<p>一个应用程序总是由n多个类组成，Java程序启动时，并不是一次把所有的类全部加载后再运行，它总是先把保证程序运行的基础类一次性加载到jvm中，其它类等到jvm用到的时候再加载，这样的好处是节省了内存的开销，因为java最早就是为嵌入式系统而设计的，内存宝贵，这是一种可以理解的机制，而用到时再加载这也是java动态性的一种体现。</p>
+</blockquote>
+<h5 id="java类装载器"><a href="#java类装载器" class="headerlink" title="java类装载器"></a><strong>java类装载器</strong></h5><p>Java中的类装载器实质上也是类，功能是把类载入jvm中，值得注意的是jvm的类装载器并不是一个，而是三个，层次结构如下：</p>
+<p><a target="_blank" rel="noopener" href="http://www.hollischuang.com/wp-content/uploads/2015/04/image03.png"><img src="http://www.hollischuang.com/wp-content/uploads/2015/04/image03.png" srcset="/img/loading.gif" lazyload alt="image03"></a></p>
+<p>为什么要有三个类加载器，一方面是分工，各自负责各自的区块，另一方面为了实现委托模型。</p>
+<h5 id="类加载器之间是如何协调工作的"><a href="#类加载器之间是如何协调工作的" class="headerlink" title="类加载器之间是如何协调工作的"></a><strong>类加载器之间是如何协调工作的</strong></h5><p>前面说了，java中有三个类加载器，问题就来了，碰到一个类需要加载时，它们之间是如何协调工作的，即java是如何区分一个类该由哪个类加载器来完成呢。 在这里java采用了<strong>委托模型机制</strong>，这个机制简单来讲，就是“<strong>类装载器有载入类的需求时，会先请示其Parent使用其搜索路径帮忙载入，如果Parent找不到,那么才由自己依照自己的搜索路径搜索类</strong>”</p>
+<p><a target="_blank" rel="noopener" href="http://www.hollischuang.com/wp-content/uploads/2015/04/image02.png"><img src="http://www.hollischuang.com/wp-content/uploads/2015/04/image02.png" srcset="/img/loading.gif" lazyload alt="image02"></a></p>
+<p>下面举一个例子来说明，为了更好的理解，先弄清楚几行代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs java">Public <span class="hljs-keyword">class</span> <span class="hljs-title class_">Test</span>&#123;<br>    Public <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] arg)</span>&#123;<br>        <span class="hljs-type">ClassLoader</span> <span class="hljs-variable">c</span>  <span class="hljs-operator">=</span> Test.class.getClassLoader();  <span class="hljs-comment">//获取Test类的类加载器</span><br>        System.out.println(c); <br>        <span class="hljs-type">ClassLoader</span> <span class="hljs-variable">c1</span> <span class="hljs-operator">=</span> c.getParent();  <span class="hljs-comment">//获取c这个类加载器的父类加载器</span><br>        System.out.println(c1);<br>        <span class="hljs-type">ClassLoader</span> <span class="hljs-variable">c2</span> <span class="hljs-operator">=</span> c1.getParent();<span class="hljs-comment">//获取c1这个类加载器的父类加载器</span><br>        System.out.println(c2);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>运行结果：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java">AppClassLoader<br><br>ExtClassLoader<br><br>Null<br></code></pre></td></tr></table></figure>
+
+<p>可以看出Test是由<strong>AppClassLoader</strong>加载器加载的，<strong>AppClassLoader</strong>的<code>Parent</code> 加载器是 <strong>ExtClassLoader</strong>,但是<code>ExtClassLoader</code>的<code>Parent</code>为 <code>null</code> 是怎么回事呵，那是因为 <strong>Bootstrap Loader</strong>是用C++语言写的，依java的观点来看，逻辑上并不存在<strong>Bootstrap Loader</strong>的类实体，所以在<code>java</code>程序代码里试图打印出其内容时，我们就会看到输出为<code>null</code>。</p>
+<h5 id="类装载器ClassLoader（一个抽象类）描述一下JVM加载class文件的原理机制"><a href="#类装载器ClassLoader（一个抽象类）描述一下JVM加载class文件的原理机制" class="headerlink" title="类装载器ClassLoader（一个抽象类）描述一下JVM加载class文件的原理机制"></a>类装载器ClassLoader（一个抽象类）描述一下JVM加载class文件的原理机制</h5><p>类装载器就是寻找类或接口字节码文件进行解析并构造JVM内部对象表示的组件，在java中类装载器把一个类装入JVM，经过以下步骤：</p>
+<blockquote>
+<p>1、装载：查找和导入Class文件。</p>
+<p>2、链接：其中解析步骤是可以选择的 </p>
+<p>​	（a）检查：检查载入的class文件数据的正确性 </p>
+<p>​	（b）准备：给类的静态变量分配存储空间 </p>
+<p>​	（c）解析：将符号引用转成直接引用 </p>
+<p>3、初始化：对静态变量，静态代码块执行初始化工作</p>
+</blockquote>
+<p>类装载工作由<code>ClassLoder</code>和其子类负责。JVM在运行时会产生三个ClassLoader：<strong>根装载器</strong>，<code>ExtClassLoader</code>(<strong>扩展类装载器</strong>)和<code>AppClassLoader</code>，其中根装载器为Bootstrap Loader，它不是ClassLoader的子类，由C++编写，因此在java中看不到他，负责装载JRE的核心类库，如JRE目录下的rt.jar,charsets.jar等。<code>ExtClassLoader</code>是<code>ClassLoder</code>的子类，负责装载JRE扩展目录ext下的jar类包；**<code>AppClassLoader</code>负责装载classpath路径下的类包，这三个类装载器存在父子层级关系*<em>*<em>，即根装载器（Bootstrap Loader）是ExtClassLoader的父装载器，ExtClassLoader是AppClassLoader的父装载器。默认情况下使用AppClassLoader装载应用程序的类。</em></em></p>
+<p>Java装载类使用“<strong>全盘负责委托机制</strong>”。“<strong>全盘负责</strong>”是指当一个<code>ClassLoder</code>装载一个类时，除非显示的使用另外一个<code>ClassLoder</code>，那么该类所依赖及引用的类也由这个<code>ClassLoder</code>载入；“<strong>委托机制</strong>”是指先委托父类装载器寻找目标类，只有在找不到的情况下才从自己的类路径中查找并装载目标类。这一点是从安全方面考虑的，试想如果一个人写了一个恶意的基础类（如<code>java.lang.String</code>）并加载到<code>JVM</code>将会引起严重的后果，但有了全盘负责制，<code>java.lang.String</code>永远是由根装载器来装载，避免以上情况发生 除了JVM默认的三个<code>ClassLoder</code>以外，第三方可以编写自己的类装载器，以实现一些特殊的需求。类文件被装载解析后，在<code>JVM</code>中都有一个对应的<code>java.lang.Class</code>对象，提供了类结构信息的描述。数组，枚举及基本数据类型，甚至<code>void</code>都拥有对应的<code>Class</code>对象。<code>Class</code>类没有<code>public</code>的构造方法，<code>Class</code>对象是在装载类时由<code>JVM</code>通过调用类装载器中的<code>defineClass()</code>方法自动构造的。</p>
 
                 
               </div>
@@ -370,8 +377,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>Java的编译原理</div>
-      <div>http://example.com/2023/10/13/Java的编译原理/</div>
+      <div>Java类的加载</div>
+      <div>http://example.com/2023/10/24/Java类的加载/</div>
     </div>
     <div class="license-meta">
       
@@ -383,7 +390,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2023年10月13日</div>
+          <div>2023年10月24日</div>
         </div>
       
       
@@ -415,9 +422,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/10/23/jar%E6%96%87%E4%BB%B6%E7%9A%84%E5%8E%8B%E7%BC%A9%E5%92%8C%E8%A7%A3%E5%8E%8B/" title="jar文件的压缩和解压">
+                      <a href="/2023/10/24/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/" title="单例模式">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">jar文件的压缩和解压</span>
+                        <span class="hidden-mobile">单例模式</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -425,8 +432,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/10/12/JavaShell%E5%B7%A5%E5%85%B7%EF%BC%88JShell%EF%BC%89/" title="JavaShell工具（JShell）">
-                        <span class="hidden-mobile">JavaShell工具（JShell）</span>
+                      <a href="/2023/10/24/println%E5%92%8Cprint%E6%96%B9%E6%B3%95%E6%89%93%E5%8D%B0%E5%AF%B9%E8%B1%A1%E6%88%96%E5%AE%9E%E4%BD%93%E6%97%B6%E4%BC%9A%E8%87%AA%E5%8A%A8%E8%B0%83%E7%94%A8toString%E6%96%B9%E6%B3%95/" title="println和print方法打印对象或实体时会自动调用toString方法">
+                        <span class="hidden-mobile">println和print方法打印对象或实体时会自动调用toString方法</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

@@ -16,26 +16,23 @@
   <meta name="author" content="xxxy-y">
   <meta name="keywords" content="">
   
-    <meta name="description" content="Java编译原理一个Java虚拟机（JVM）是从未被物理建成硬件假想计算机。而HotSpot虚拟机则是JVM的一种实现。 编程语言的编译过程一般分为前端编译和后端编译。 根据完成任务不同，可以将编译器的组成部分划分为前端（Front End）与后端（Back End）。 前端编译主要指与源语言有关但与目标机无关的部分，包括词法分析、语法分析、语义分析与中间代码生成。 后端编译主要指与目标机有关的部">
+    <meta name="description" content="当我们打印对象或实体类时为什么会自动调用toString()方法? 我们可以先看看源码: println(Object obj)源码： 12345678910111213public void println(Object x) &amp;#123;    String s &#x3D; String.valueOf(x);    if (getClass() &#x3D;&#x3D; PrintStream.class) &amp;#123">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Java的编译原理">
-<meta property="og:url" content="http://example.com/2023/10/13/Java%E7%9A%84%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/index.html">
+<meta property="og:title" content="println和print方法打印对象或实体时会自动调用toString方法">
+<meta property="og:url" content="http://example.com/2023/10/24/println%E5%92%8Cprint%E6%96%B9%E6%B3%95%E6%89%93%E5%8D%B0%E5%AF%B9%E8%B1%A1%E6%88%96%E5%AE%9E%E4%BD%93%E6%97%B6%E4%BC%9A%E8%87%AA%E5%8A%A8%E8%B0%83%E7%94%A8toString%E6%96%B9%E6%B3%95/index.html">
 <meta property="og:site_name" content="xxxy-y的个人博客">
-<meta property="og:description" content="Java编译原理一个Java虚拟机（JVM）是从未被物理建成硬件假想计算机。而HotSpot虚拟机则是JVM的一种实现。 编程语言的编译过程一般分为前端编译和后端编译。 根据完成任务不同，可以将编译器的组成部分划分为前端（Front End）与后端（Back End）。 前端编译主要指与源语言有关但与目标机无关的部分，包括词法分析、语法分析、语义分析与中间代码生成。 后端编译主要指与目标机有关的部">
+<meta property="og:description" content="当我们打印对象或实体类时为什么会自动调用toString()方法? 我们可以先看看源码: println(Object obj)源码： 12345678910111213public void println(Object x) &amp;#123;    String s &#x3D; String.valueOf(x);    if (getClass() &#x3D;&#x3D; PrintStream.class) &amp;#123">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://example.com/2023/10/13/Java%E7%9A%84%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/QQ20180414-203816.png">
-<meta property="og:image" content="http://example.com/2023/10/13/Java%E7%9A%84%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/15539289530245.jpg">
-<meta property="article:published_time" content="2023-10-13T11:09:05.000Z">
-<meta property="article:modified_time" content="2023-10-13T11:09:05.850Z">
+<meta property="article:published_time" content="2023-10-24T03:10:39.000Z">
+<meta property="article:modified_time" content="2023-10-24T03:10:39.012Z">
 <meta property="article:author" content="xxxy-y">
 <meta property="article:tag" content="Java">
-<meta property="article:tag" content="JVM">
+<meta property="article:tag" content="打印对象">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://example.com/2023/10/13/Java%E7%9A%84%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/QQ20180414-203816.png">
   
   
   
-  <title>Java的编译原理 - xxxy-y的个人博客</title>
+  <title>println和print方法打印对象或实体时会自动调用toString方法 - xxxy-y的个人博客</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -230,7 +227,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="Java的编译原理"></span>
+            <span id="subtitle" data-typed-text="println和print方法打印对象或实体时会自动调用toString方法"></span>
           
         </div>
 
@@ -241,8 +238,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-10-13 19:09" pubdate>
-          2023年10月13日 晚上
+        <time datetime="2023-10-24 11:10" pubdate>
+          2023年10月24日 上午
         </time>
       </span>
     
@@ -253,7 +250,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2.2k 字
+          1.5k 字
         
       </span>
     
@@ -264,7 +261,7 @@
         
         
         
-          19 分钟
+          13 分钟
         
       </span>
     
@@ -309,41 +306,35 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">Java的编译原理</h1>
+            <h1 id="seo-header">println和print方法打印对象或实体时会自动调用toString方法</h1>
             
             
               <div class="markdown-body">
                 
-                <h4 id="Java编译原理"><a href="#Java编译原理" class="headerlink" title="Java编译原理"></a>Java编译原理</h4><p><strong>一个Java虚拟机（JVM）是从未被物理建成硬件假想计算机</strong>。而HotSpot虚拟机则是JVM的一种实现。</p>
-<p>编程语言的编译过程一般分为前端编译和后端编译。</p>
-<p>根据完成任务不同，可以将编译器的组成部分划分为前端（Front End）与后端（Back End）。</p>
-<p>前端编译主要指与源语言有关但与目标机无关的部分，包括词法分析、语法分析、语义分析与中间代码生成。</p>
-<p>后端编译主要指与目标机有关的部分，包括代码优化和目标代码生成等。</p>
-<p><img src="/2023/10/13/Java%E7%9A%84%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/QQ20180414-203816.png" srcset="/img/loading.gif" lazyload></p>
-<h5 id="前端（Front-End）编译"><a href="#前端（Front-End）编译" class="headerlink" title="前端（Front End）编译"></a>前端（Front End）编译</h5><h6 id="词法分析"><a href="#词法分析" class="headerlink" title="词法分析"></a>词法分析</h6><p>词法分析阶段是编译过程的第一个阶段。这个阶段的任务是从左到右一个字符一个字符地读入源程序，将字符序列转换为标记（token）序列的过程。这里的标记是一个字符串，是构成源代码的最小单位。在这个过程中，词法分析器还会对标记进行分类。</p>
-<p>词法分析器通常不会关心标记之间的关系（属于语法分析的范畴），举例来说：词法分析器能够将括号识别为标记，但并不保证括号是否匹配。</p>
-<h6 id="语法分析"><a href="#语法分析" class="headerlink" title="语法分析"></a>语法分析</h6><p>语法分析的任务是在词法分析的基础上将单词序列组合成各类语法短语，如“程序”，“语句”，“表达式”等等.语法分析程序判断源程序在结构上是否正确.源程序的结构由上下文无关文法描述。</p>
-<h6 id="语义分析"><a href="#语义分析" class="headerlink" title="语义分析"></a>语义分析</h6><p>语义分析是编译过程的一个逻辑阶段， 语义分析的任务是对结构上正确的源程序进行上下文有关性质的审查，进行类型审查。语义分析是审查源程序有无语义错误，为代码生成阶段收集类型信息。</p>
-<p>语义分析的一个重要部分就是类型检查。比如很多语言要求数组下标必须为整数，如果使用浮点数作为下标，编译器就必须报错。再比如，很多语言允许某些类型转换，称为自动类型转换。</p>
-<h6 id="中间代码生成"><a href="#中间代码生成" class="headerlink" title="中间代码生成"></a>中间代码生成</h6><p>在源程序的语法分析和语义分析完成之后，很多编译器生成一个明确的低级的或类机器语言的中间表示。该中间表示有两个重要的性质： 1.易于生成； 2.能够轻松地翻译为目标机器上的语言。</p>
-<p>在Java中，<code>javac</code>执行的结果就是得到一个字节码，而这个字节码其实就是一种中间代码。</p>
-<h5 id="后端（Back-End）编译"><a href="#后端（Back-End）编译" class="headerlink" title="后端（Back End）编译"></a>后端（Back End）编译</h5><p>JVM 通过解释字节码将其翻译成对应的机器指令，逐条读入，逐条解释翻译。</p>
-<h6 id="JIT技术"><a href="#JIT技术" class="headerlink" title="JIT技术"></a>JIT技术</h6><p>但是在经过解释执行后，其执行速度必然会比可执行的二进制字节码程序慢很多。这就是传统的JVM的<strong>解释器（Interpreter，它是JVM中的一部分）</strong>的功能。为了解决这种效率问题，引入了 <strong>JIT</strong> 技术。</p>
-<p>JAVA程序还是通过解释器进行解释执行，当JVM发现某个方法或代码块运行特别频繁的时候，就会认为这是“热点代码”（Hot Spot Code)。然后JIT会把部分“热点代码”<strong>翻译</strong>成本地机器相关的机器码，并进行<strong>优化</strong>，然后再把翻译后的机器码<strong>缓存</strong>起来，以备下次使用。</p>
-<p>HotSpot虚拟机中内置了两个JIT编译器：Client Complier和Server Complier，分别用在客户端和服务端，目前主流的HotSpot虚拟机中默认是采用解释器与其中一个编译器直接配合的方式工作。</p>
-<p>当 JVM 执行代码时，它并不立即开始编译代码。首先，如果这段代码本身在将来只会被执行一次，那么从本质上看，编译就是在浪费精力。因为将代码翻译成 java 字节码相对于编译这段代码并执行代码来说，要快很多。第二个原因是最优化，当 JVM 执行某一方法或遍历循环的次数越多，就会更加了解代码结构，那么 JVM 在编译代码的时候就做出相应的优化。</p>
-<p>要想触发JIT，首先需要识别出热点代码。目前主要的热点代码识别方式是热点探测（Hot Spot Detection），有以下两种：</p>
-<p>1、基于采样的方式探测（Sample Based Hot Spot Detection) ：周期性检测各个线程的栈顶，发现某个方法经常出险在栈顶，就认为是热点方法。好处就是简单，缺点就是无法精确确认一个方法的热度。容易受线程阻塞或别的原因干扰热点探测。</p>
-<p>2、基于计数器的热点探测（Counter Based Hot Spot Detection)。采用这种方法的虚拟机会为每个方法，甚至是代码块建立计数器，统计方法的执行次数，某个方法超过阀值就认为是热点方法，触发JIT编译。</p>
-<p>在HotSpot虚拟机中使用的是第二种——基于计数器的热点探测方法，因此它为每个方法准备了两个计数器：方法调用计数器和回边计数器。</p>
-<p>方法计数器。记录一个方法被调用次数的计数器。</p>
-<p>回边计数器。记录方法中的for或者while的运行次数的计数器。</p>
-<h6 id="编译优化"><a href="#编译优化" class="headerlink" title="编译优化"></a>编译优化</h6><p>前面提到过，JIT除了具有缓存的功能外，还会对代码做各种优化。说到这里，不得不佩服HotSpot的开发者，他们在JIT中对于代码优化真的算是面面俱到了。</p>
-<h5 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h5><p>在Java语言中，我们可以把将<code>.java</code>文件通过 <code>jdk中的bin文件夹下的javac.exe</code> 编译成<code>.class</code>的编译过程称之为前端编译。把将<code>.class</code>文件通过 <code>JVM(jre中的bin文件夹可以看作为JVM)</code> 翻译成机器指令的编译过程称之为后端编译。</p>
-<p><code>javac</code>的编译就是前端编译。除了这种以外，我们使用的很多IDE，如eclipse，idea等，都内置了前端编译器。主要功能就是把<code>.java</code>代码转换成<code>.class</code>代码（中间代码）。</p>
-<p>JVM 通过解释字节码将其翻译成对应的机器指令，逐条读入，逐条解释翻译。</p>
-<p><img src="/2023/10/13/Java%E7%9A%84%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/15539289530245.jpg" srcset="/img/loading.gif" lazyload></p>
-<p>因为JVM只要接收到.class文件便可以执行，它不管这个.class文件是怎么生成的，所以衍生出了很多新的编程语言，像Groovy、Scala、Kotlin等等，他们生成.class文件然后交给JVM来使用。</p>
+                <p>当我们打印对象或实体类时为什么会自动调用toString()方法?</p>
+<p>我们可以先看看源码:</p>
+<p>println(Object obj)源码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">println</span><span class="hljs-params">(Object x)</span> &#123;<br>    <span class="hljs-type">String</span> <span class="hljs-variable">s</span> <span class="hljs-operator">=</span> String.valueOf(x);<br>    <span class="hljs-keyword">if</span> (getClass() == PrintStream.class) &#123;<br>        <span class="hljs-comment">// need to apply String.valueOf again since first invocation</span><br>        <span class="hljs-comment">// might return null</span><br>        writeln(String.valueOf(s));<br>    &#125; <span class="hljs-keyword">else</span> &#123;<br>        <span class="hljs-keyword">synchronized</span> (<span class="hljs-built_in">this</span>) &#123;<br>            print(s);<br>            newLine();<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>print(Object obj)源码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">print</span><span class="hljs-params">(String s)</span> &#123;<br>    write(String.valueOf(s));<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>valueOf(Object obj)源码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> String <span class="hljs-title function_">valueOf</span><span class="hljs-params">(Object obj)</span> &#123;<br>    <span class="hljs-keyword">return</span> (obj == <span class="hljs-literal">null</span>) ? <span class="hljs-string">&quot;null&quot;</span> : obj.toString();<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>Object类的toString()定义：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> String <span class="hljs-title function_">toString</span><span class="hljs-params">()</span> &#123;<br>    <span class="hljs-keyword">return</span> getClass().getName() + <span class="hljs-string">&quot;@&quot;</span> + Integer.toHexString(hashCode());<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>在源码层次，流程可以看作：</p>
+<p>println(Object x)-&gt;print(String s)-&gt;valueOf(Object obj)-&gt;toString()</p>
+<p>println(Object x)-&gt;valueOf(Object obj)-&gt;toString()</p>
+<p>我们可以发现，当我们调用println()打印对象时，会在源码层面调用print()方法，而print方法又会调用String.valueOf()方法，而String.valueOf()方法最终会调用Object的toString()方法，该方法最终会返回getClass().getName() + “@” + Integer.toHexString(hashCode());也就是该符号字符的类的名称的字符串+“ @ ”和对象的哈希码的无符号的十六进制表示。</p>
+<p>所以打印其实是把对象toString()方法返回的值打印出来。</p>
+<p>因为所有的类都继承自object，object类具有一个toString()方法，创建的每个类都会继承该方法，返回对象的一个getClass().getName() + “@” + Integer.toHexString(hashCode())表示。</p>
+<p>String自身重写了toString()方法，所以打印String对象，不需要重写toString方法，它可以直接打印出你需要的信息。</p>
+<p>实体类的话，打印也会调用toString方法，但是需要自己重写toString方法。</p>
+<p>toString的好处是在碰到“println”之类的输出方法时会自动调用，不用显式打出来。</p>
+<p>一般的实体类都要重写toString() 、equals()、hashCode()等方法方法,如User ,Student等实体类，重写后当要打印实体时，则会自动调用你在实体类中重写的toString方法或者如果你没有重写该方法，那么会调用Object中的toString()方法。</p>
 
                 
               </div>
@@ -358,7 +349,7 @@
       
         <a href="/tags/Java/" class="print-no-link">#Java</a>
       
-        <a href="/tags/JVM/" class="print-no-link">#JVM</a>
+        <a href="/tags/%E6%89%93%E5%8D%B0%E5%AF%B9%E8%B1%A1/" class="print-no-link">#打印对象</a>
       
     </div>
   
@@ -370,8 +361,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>Java的编译原理</div>
-      <div>http://example.com/2023/10/13/Java的编译原理/</div>
+      <div>println和print方法打印对象或实体时会自动调用toString方法</div>
+      <div>http://example.com/2023/10/24/println和print方法打印对象或实体时会自动调用toString方法/</div>
     </div>
     <div class="license-meta">
       
@@ -383,7 +374,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2023年10月13日</div>
+          <div>2023年10月24日</div>
         </div>
       
       
@@ -415,9 +406,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/10/23/jar%E6%96%87%E4%BB%B6%E7%9A%84%E5%8E%8B%E7%BC%A9%E5%92%8C%E8%A7%A3%E5%8E%8B/" title="jar文件的压缩和解压">
+                      <a href="/2023/10/24/Java%E7%B1%BB%E7%9A%84%E5%8A%A0%E8%BD%BD/" title="Java类的加载">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">jar文件的压缩和解压</span>
+                        <span class="hidden-mobile">Java类的加载</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -425,8 +416,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/10/12/JavaShell%E5%B7%A5%E5%85%B7%EF%BC%88JShell%EF%BC%89/" title="JavaShell工具（JShell）">
-                        <span class="hidden-mobile">JavaShell工具（JShell）</span>
+                      <a href="/2023/10/24/Maven%E4%B8%ADpom%E5%92%8Cimport%E6%A0%87%E7%AD%BE%E7%9A%84%E4%BD%9C%E7%94%A8/" title="Maven中pom和import标签的作用">
+                        <span class="hidden-mobile">Maven中pom和import标签的作用</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
